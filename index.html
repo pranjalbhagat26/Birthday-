@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Mumma ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg,#ffd6e8,#ffb3d9);
+    color:#5a2a3a;
+}
+
+/* ---------- GIFT SCREEN ---------- */
+#giftScreen{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+#giftBox{
+    font-size:120px;
+    cursor:pointer;
+    animation:shake 1.5s infinite;
+}
+#giftText{
+    margin-top:15px;
+    font-size:1.5rem;
+    color:#7a2a4a;
+}
+@keyframes shake{
+    0%,100%{transform:rotate(0)}
+    25%{transform:rotate(-6deg)}
+    75%{transform:rotate(6deg)}
+}
+
+/* ---------- MAIN CONTENT ---------- */
+#mainContent{
+    display:none;
+    max-width:900px;
+    margin:40px auto;
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 20px 45px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+/* ---------- TITLE ---------- */
+h1{font-size:2rem;margin-bottom:5px}
+.subtitle{
+    font-style:italic;
+    margin-bottom:30px;
+    color:#6a2a4a;
+}
+
+/* ---------- AUTO IMAGE SEQUENCE ---------- */
+.slideshow{
+    position:relative;
+    overflow:hidden;
+    height:460px;
+}
+.slide{
+    position:absolute;
+    width:100%;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+}
+.slide.active{
+    opacity:1;
+}
+.slide.active img{
+    animation:gentleZoom 5s ease-in-out forwards;
+}
+@keyframes gentleZoom{
+    0%{transform:scale(1)}
+    100%{transform:scale(1.05)}
+}
+.slide img{
+    width:100%;
+    height:420px;
+    object-fit:contain;
+    background:#fce4ec;
+    border-radius:20px;
+}
+.caption{
+    margin-top:12px;
+    font-size:1.1rem;
+    color:#7a2a4a;
+}
+
+/* ---------- CONTROLS (HIDDEN - AUTO PLAY) ---------- */
+.controls{
+    display:none;
+}
+
+/* ---------- LETTER BUTTON ---------- */
+.letter-trigger{
+    display:none;
+    margin:30px 0;
+    animation:fadeUp 1.2s ease forwards;
+}
+.letter-trigger button{
+    padding:15px 32px;
+    font-size:1.1rem;
+    border:none;
+    border-radius:30px;
+    background:#ff6b9d;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* ---------- LETTER ---------- */
+.letter{
+    display:none;
+    margin-top:20px;
+    padding:30px;
+    background:#fff0f6;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    animation:fadeUp 1.5s ease;
+}
+.letter h2{
+    margin-bottom:20px;
+    color:#8b2f5c;
+}
+.letter p{
+    font-size:1.1rem;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+.sign{
+    text-align:right;
+    font-style:italic;
+    margin-top:20px;
+}
+
+/* ---------- VOICE MESSAGE SECTION ---------- */
+.voice-section{
+    display:none;
+    margin-top:30px;
+    padding:25px;
+    background:linear-gradient(135deg,#fff5f8,#ffe4f0);
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    animation:fadeUp 1.5s ease;
+}
+.voice-section h3{
+    font-size:1.4rem;
+    color:#8b2f5c;
+    margin-bottom:15px;
+}
+.voice-section audio{
+    width:100%;
+    max-width:500px;
+    margin-top:10px;
+    outline:none;
+}
+
+
+
+/* ---------- THEN VS NOW SECTION ---------- */
+.comparison-section{
+    display:none;
+    margin-top:30px;
+    padding:30px;
+    background:linear-gradient(135deg,#f0f8ff,#e6f2ff);
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.12);
+    animation:fadeUp 2s ease;
+}
+.comparison-section h3{
+    font-size:1.4rem;
+    color:#2a5a8b;
+    margin-bottom:20px;
+}
+.comparison-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:15px;
+}
+.comparison-item{
+    text-align:center;
+}
+.comparison-item img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:15px;
+    background:#f0f0f0;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+.comparison-item .label{
+    margin-top:10px;
+    font-size:1.1rem;
+    color:#4a4a4a;
+    font-weight:bold;
+}
+.comparison-caption{
+    font-size:1.2rem;
+    color:#2a5a8b;
+    margin-top:15px;
+    font-style:italic;
+}
+
+/* ---------- FINAL ---------- */
+.final-text{
+    margin-top:40px;
+    font-size:1.8rem;
+    color:#8b2f5c;
+    animation:bounce 2s infinite;
+}
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+.end{
+    margin-top:10px;
+    font-style:italic;
+}
+
+/* ---------- SPARKLES ---------- */
+.sparkle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:radial-gradient(circle,#fff,#ffb3d9);
+    border-radius:50%;
+    pointer-events:none;
+    animation:sparkleFloat linear infinite;
+    opacity:.8;
+    z-index:999;
+}
+@keyframes sparkleFloat{
+    0%{transform:translateY(100vh) scale(.5);opacity:0}
+    20%{opacity:1}
+    100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:confettiFall linear forwards;
+    z-index:1000;
+}
+@keyframes confettiFall{
+    to{transform:translateY(110vh) rotate(720deg);opacity:0}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+    .slide img{height:300px}
+    .slideshow{height:340px}
+    .comparison-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+    .comparison-item img{
+        height:250px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎁 GIFT -->
+<div id="giftScreen">
+    <div id="giftBox">🎁</div>
+    <div id="giftText">Click to open your surprise Mumma ❤️</div>
+</div>
+
+<!-- ❤️ MAIN CONTENT -->
+<div id="mainContent">
+
+<h1>माझ्या आयुष्याला आकार देणाऱ्या स्त्रीसाठी ❤️</h1>
+<div class="subtitle">For the woman who shaped my life</div>
+
+<div class="slideshow">
+    <div class="slide active"><img src="images/1.jpg"><div class="caption">From the very beginning ❤️</div></div>
+    <div class="slide"><img src="images/2.jpg"><div class="caption">My forever support 💪</div></div>
+    <div class="slide"><img src="images/3.jpg"><div class="caption">आई आणि मैत्रीण – Mumma 💕</div></div>
+    <div class="slide"><img src="images/4.jpg"><div class="caption">तुझ्या मिठीतच माझं घर 🤗</div></div>
+    <div class="slide"><img src="images/5.jpg"><div class="caption">The heart of our family 🏡</div></div>
+    <div class="slide"><img src="images/6.jpg"><div class="caption">आजही तितकीच सुंदर ✨</div></div>
+    <div class="slide"><img src="images/7.jpg"><div class="caption">Forever grateful Mumma 🙏</div></div>
+</div>
+
+<div class="controls">
+    <button onclick="changeSlide(-1)">◀</button>
+    <button onclick="changeSlide(1)">▶</button>
+</div>
+
+<!-- 💌 LETTER BUTTON (appears after last slide) -->
+<div id="letterTrigger" class="letter-trigger">
+    <button onclick="showLetter()">💌 एक शेवटचा संदेश माझ्या Mumma साठी</button>
+</div>
+
+<!-- 💌 LETTER -->
+<div id="letterBox" class="letter">
+<h2>Happy Birthday Mumma ❤️</h2>
+
+<p>
+तू नेहमी माझ्या सोबत उभी राहिलीस —
+without expecting anything in return.
+तुझ्या sacrifices, patience ani silent strength मुळे
+आज मी जे काही आहे, ते possible झालं.
+</p>
+
+<p>
+कधी कधी मी बोलत नाही, पण मला सगळं कळतं —
+how much you do, how much you adjust,
+ani how deeply you care for everyone in this family.
+</p>
+
+<p>
+Mumma, तू माझी inspiration आहे.
+तुझा calm, तुझ्या decision-making,
+ani tough situations मध्ये पण strong राहण्याची ability —
+I really admire that.
+</p>
+
+<p>
+No matter where life takes me,
+You will always be my home.
+</p>
+
+<p>
+Thank you for being my constant support,
+my strength, ani my biggest blessing.
+</p>
+
+<p>
+<b>I'm proud to be your child.</b>
+</p>
+
+<p>Love you, always 🤍</p>
+
+<p class="sign">— तुझीच Gudda 🐣</p>
+</div>
+
+<!-- 🔊 VOICE MESSAGE SECTION -->
+<div id="voiceSection" class="voice-section">
+<h3>🔊 माझ्या आवाजात एक गोष्ट</h3>
+<audio id="voiceMessage" controls>
+    <source src="audio/voice-message.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+</div>
+
+<!-- 📸 THEN VS NOW SECTION -->
+<div id="comparisonSection" class="comparison-section">
+<h3>तेव्हा आणि आता ❤️</h3>
+<div class="comparison-grid">
+    <div class="comparison-item">
+        <img src="images/then.jpg" alt="Then" onerror="this.style.display='block'">
+        <div class="label">तेव्हा</div>
+    </div>
+    <div class="comparison-item">
+        <img src="images/now.jpg" alt="Now" onerror="this.style.display='block'">
+        <div class="label">आता</div>
+    </div>
+</div>
+<div class="comparison-caption">तू तेव्हा माझ्या मागे होतीस… आजही आहेस ❤️</div>
+</div>
+
+<div class="final-text">HAPPY BIRTHDAY MUMMA ❤️</div>
+<div class="end">With all my love – Pranjal Bhagat</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="happy-birthday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ========== AUTO IMAGE SEQUENCE ========== */
+// ⏱️ CHANGE TIMING HERE: 5000 = 5 seconds per image
+const SLIDE_INTERVAL = 5000; // milliseconds
+
+let index = 0;
+const slides = document.querySelectorAll('.slide');
+const letterTrigger = document.getElementById("letterTrigger");
+const letterBox = document.getElementById("letterBox");
+const voiceSection = document.getElementById("voiceSection");
+const comparisonSection = document.getElementById("comparisonSection");
+
+// ⏱️ AUDIO ELEMENTS
+const music = document.getElementById("music");
+const voiceMessage = document.getElementById("voiceMessage");
+
+let autoPlayInterval = null;
+
+/* 🎬 AUTO ADVANCE SLIDES */
+function autoAdvanceSlide(){
+    // Remove active class from current slide
+    slides[index].classList.remove('active');
+    
+    // Move to next slide
+    index++;
+    
+    // If we've shown all slides, stop and show letter button
+    if(index >= slides.length){
+        clearInterval(autoPlayInterval);
+        // Smooth fade-in for the button after last image
+        setTimeout(()=>{
+            letterTrigger.style.display="block";
+        }, 500);
+        return;
+    }
+    
+    // Show next slide
+    slides[index].classList.add('active');
+}
+
+/* 🎁 GIFT CLICK - START AUTO SLIDESHOW */
+giftBox.onclick = () => {
+    giftScreen.style.display = "none";
+    mainContent.style.display = "block";
+    music.play();
+    confettiBlast();
+    window.scrollTo({top:0, behavior:'smooth'});
+    
+    // Start automatic slideshow
+    autoPlayInterval = setInterval(autoAdvanceSlide, SLIDE_INTERVAL);
+};
+
+/* 💌 SHOW LETTER - START 15-SECOND READING TIMER */
+function showLetter(){
+    letterTrigger.style.display = "none";
+    letterBox.style.display = "block";
+    letterBox.scrollIntoView({behavior:"smooth"});
+    
+    // ⏱️ LETTER TIMER: 15-SECOND READING TIME
+    // After letter becomes visible, wait 15 seconds before showing voice message
+    // This gives time to read the letter without distractions
+    setTimeout(() => {
+        // VOICE MESSAGE FLOW: Show voice section after 15 seconds
+        voiceSection.style.display = "block";
+        voiceSection.scrollIntoView({behavior:"smooth", block:"center"});
+    }, 15000); // 15 seconds = 15000 milliseconds
+}
+
+/* ========== AUDIO CONTROL LOGIC ========== */
+
+// 🎵 AUDIO CONTROL: When voice message PLAYS → Pause birthday song
+// User manually clicks play on voice message audio
+voiceMessage.addEventListener('play', () => {
+    music.pause(); // Immediately pause background birthday song
+});
+
+// 🎵 THEN VS NOW FLOW: When voice message ENDS → Show comparison section
+// DO NOT restart birthday song (it stays paused)
+voiceMessage.addEventListener('ended', () => {
+    // Show Then vs Now comparison section after voice message completes
+    comparisonSection.style.display = "block";
+    comparisonSection.scrollIntoView({behavior:"smooth", block:"center"});
+    // Note: Birthday song remains paused permanently
+});
+
+/* ✨ SPARKLES */
+function createSparkle(){
+    const s = document.createElement("div");
+    s.className = "sparkle";
+    s.style.left = Math.random()*100 + "vw";
+    s.style.animationDuration = (Math.random()*5+5) + "s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 8000);
+}
+setInterval(createSparkle, 400);
+
+/* 🎊 CONFETTI */
+function confettiBlast(){
+    for(let i=0; i<80; i++){
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random()*100 + "vw";
+        c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+        c.style.animationDuration = (Math.random()*3+2) + "s";
+        c.style.width = c.style.height = (Math.random()*6+6) + "px";
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(), 5000);
+    }
+}
+</script>
+
+</body>
+</html>
